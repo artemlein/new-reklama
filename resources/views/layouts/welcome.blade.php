@@ -39,7 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{ URL::asset('assets/global/css/components.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="{{ URL::asset('assets/global/css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -52,7 +52,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{{ URL::asset('assets/layouts/layout/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('assets/layouts/layout/css/themes/darkblue.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="{{ URL::asset('assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -544,12 +543,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ URL::asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="{{ URL::asset('assets/global/plugins/moment.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/global/plugins/morris/morris.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/global/plugins/morris/raphael-min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/global/plugins/counterup/jquery.waypoints.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/global/plugins/counterup/jquery.counterup.min.js')}}" type="text/javascript"></script>
+
+
+
 
 
 <!-- END PAGE LEVEL PLUGINS -->
@@ -557,11 +553,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ URL::asset('assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ URL::asset('assets/pages/scripts/dashboard.min.js')}}" type="text/javascript"></script>
+
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
-<script src="{{ URL::asset('assets/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>
-<script src="{{ URL::asset('assets/layouts/layout/scripts/demo.min.js')}}" type="text/javascript"></script>
+
 <script src="{{ URL::asset('assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>

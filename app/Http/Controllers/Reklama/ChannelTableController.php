@@ -24,9 +24,7 @@ class ChannelTableController extends BaseController
         $this->counterRepository = app(CounterRepository::class);
         $this->buyChannelRepository = app(BuyChannelRepository::class);
 
-        if(!BaseController:: CheckPermissions(Auth::user())){
-            return route('index');
-        }
+
     }
 
     /**
@@ -36,6 +34,9 @@ class ChannelTableController extends BaseController
      */
     public function index()
     {
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
 
         $counter = $this->counterRepository->getCount();
         $channels = $this->channelRepository->getAllWithPaginate();
@@ -50,7 +51,9 @@ class ChannelTableController extends BaseController
      */
     public function create()
     {
-
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
         return view('tables.channels.channel_create');
     }
 
@@ -62,7 +65,9 @@ class ChannelTableController extends BaseController
      */
     public function store(Request $request)
     {
-
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
         $result = $this->channelRepository->addChannel($request);
         if($result){
             return redirect('/table/channels');

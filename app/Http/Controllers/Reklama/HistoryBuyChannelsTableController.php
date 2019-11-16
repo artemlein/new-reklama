@@ -20,9 +20,6 @@ class HistoryBuyChannelsTableController extends BaseController
         $this->buyChannelsTable = app(HistoryBuyChannelRepository::class);
         $this->counterRepository = app(CounterRepository::class);
 
-        if(!BaseController:: CheckPermissions(Auth::user())){
-            return route('index');
-        }
     }
 
     /**
@@ -32,6 +29,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function index()
     {
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
         $counts = $this->counterRepository->getCount();
 
         $channels = $this->buyChannelsTable->getAllWithPaginate();
@@ -52,6 +52,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function create()
     {
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
         $counts = $this->counterRepository->getCount();
 
         $channels = $this->buyChannelsTable->getAllWithPaginate();
@@ -66,7 +69,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function store(BuyChannelStoreRequest $request)
     {
-
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
         $this->buyChannelsTable->store($request);
         $this->counterRepository->plusMoneyCount($request);
     }
@@ -79,7 +84,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function show($id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -90,7 +97,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function edit($id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -102,7 +111,9 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -113,6 +124,8 @@ class HistoryBuyChannelsTableController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 }

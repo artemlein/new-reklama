@@ -13,10 +13,11 @@ class BaseController extends Controller
 
     public function CheckPermissions($user){
         if($user) {
-            if($user->admin === 1){
 
+            if($user->admin === 1){
                 return true;
             }
+
         }
     }
 }

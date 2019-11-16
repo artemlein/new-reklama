@@ -104,16 +104,12 @@
         </div>
 
         @if(Auth::user())
-            @if(Auth::user()->access_moderation === 1)
+            @if(Auth::user()->admin === 1)
                 <div class="links">
-                    <a href="{{ route('report.index') }}">Модерация</a>
+                    <a href="{{ route('reklama.index') }}">Advertising</a>
                 </div>
             @endif
-            @if(Auth::user()->access_mems === 1)
-                <div class="links">
-                    <a href="{{ route('mems.indexNow') }}">Мемоделы</a>
-                </div>
-            @endif
+
         @else
             <div class="links">
                 <a href="login/vk">{{  __('Login to VK') }}</a>

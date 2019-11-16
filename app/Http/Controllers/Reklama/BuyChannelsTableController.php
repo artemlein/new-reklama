@@ -14,9 +14,6 @@ class BuyChannelsTableController extends BaseController
 
     public function __construct()
     {
-        if(!BaseController:: CheckPermissions(Auth::user())){
-            return route('index');
-        }
 
         $this->counterRepository = app(CounterRepository::class);
         $this->buyChannelRepository = app(buyChannelRepository::class);
@@ -28,6 +25,10 @@ class BuyChannelsTableController extends BaseController
      */
     public function index()
     {
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return route('index');
+        }
+
         $counts = $this->counterRepository->getCount();
 
         $channels = $this->buyChannelRepository->getAllWithPaginate();
@@ -42,7 +43,9 @@ class BuyChannelsTableController extends BaseController
      */
     public function create()
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -53,7 +56,9 @@ class BuyChannelsTableController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -64,7 +69,9 @@ class BuyChannelsTableController extends BaseController
      */
     public function show($id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -75,7 +82,9 @@ class BuyChannelsTableController extends BaseController
      */
     public function edit($id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -87,7 +96,9 @@ class BuyChannelsTableController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
     }
 
     /**
@@ -98,15 +109,27 @@ class BuyChannelsTableController extends BaseController
      */
     public function destroy($id)
     {
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
+
         $this->buyChannelRepository->destroyChannel($id);
 
     }
 
     public function note_save(Request $request){
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
+
         return $this->buyChannelRepository->saveNote($request);
 
     }
     public function change_status(Request $request){
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
+
         return $this->buyChannelRepository->changeStatus($request);
     }
 
