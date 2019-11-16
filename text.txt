@@ -1,25 +1,41 @@
-+--------+-----------+---------------------------------------+----------------------------+------------------------------------------------------------------------+--------------+
-| Domain | Method    | URI                                   | Name                       | Action                                                                 | Middleware   |
-+--------+-----------+---------------------------------------+----------------------------+------------------------------------------------------------------------+--------------+
-|        | GET|HEAD  | /                                     | index                      | App\Http\Controllers\mainController@index                              | web          |
-|        | GET|HEAD  | api/user                              |                            | Closure                                                                | api,auth:api |
-|        | GET|HEAD  | home                                  | home                       | App\Http\Controllers\HomeController@index                              | web,auth     |
-|        | GET|HEAD  | login                                 | login                      | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
-|        | POST      | login                                 |                            | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
-|        | POST      | logout                                | logout                     | App\Http\Controllers\Auth\LoginController@logout                       | web          |
-|        | POST      | password/email                        | password.email             | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |
-|        | POST      | password/reset                        | password.update            | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |
-|        | GET|HEAD  | password/reset                        | password.request           | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |
-|        | GET|HEAD  | password/reset/{token}                | password.reset             | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
-|        | GET|HEAD  | refresh/money                         | table.buy-channels         | App\Http\Controllers\mainController@refreshCountMoney                  | web          |
-|        | POST      | register                              |                            | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
-|        | GET|HEAD  | register                              | register                   | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
-|        | GET|HEAD  | table/buy-channels                    | table.buy-channels.index   | App\Http\Controllers\BuyChannelsTableController@index                  | web          |
-|        | POST      | table/buy-channels                    | table.buy-channels.store   | App\Http\Controllers\BuyChannelsTableController@store                  | web          |
-|        | GET|HEAD  | table/buy-channels/add                | table.buy-channels.add     | App\Http\Controllers\BuyChannelsTableController@create                 | web          |
-|        | GET|HEAD  | table/buy-channels/create             | table.buy-channels.create  | App\Http\Controllers\BuyChannelsTableController@create                 | web          |
-|        | PUT|PATCH | table/buy-channels/{buy_channel}      | table.buy-channels.update  | App\Http\Controllers\BuyChannelsTableController@update                 | web          |
-|        | DELETE    | table/buy-channels/{buy_channel}      | table.buy-channels.destroy | App\Http\Controllers\BuyChannelsTableController@destroy                | web          |
-|        | GET|HEAD  | table/buy-channels/{buy_channel}/edit | table.buy-channels.edit    | App\Http\Controllers\BuyChannelsTableController@edit                   | web          |
-|        | GET|HEAD  | table/channels                        | table.channels             | App\Http\Controllers\ChannelTableController@index                      | web          |
-+--------+-----------+---------------------------------------+----------------------------+------------------------------------------------------------------------+--------------+
++--------+-----------+---------------------------------------------------------------+--------------------------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                                                           | Name                                 | Action                                                                 | Middleware   |
++--------+-----------+---------------------------------------------------------------+--------------------------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                                                             | index                                | App\Http\Controllers\MainController@index                              | web          |
+|        | GET|HEAD  | api/user                                                      |                                      | Closure                                                                | api,auth:api |
+|        | GET|HEAD  | home                                                          | home                                 | App\Http\Controllers\HomeController@index                              | web,auth     |
+|        | GET|HEAD  | login                                                         | login                                | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST      | login                                                         |                                      | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | GET|HEAD  | login/vk                                                      |                                      | App\Http\Controllers\Auth\LoginController@redirectToProvider           | web,guest    |
+|        | GET|HEAD  | login/vk/callback                                             |                                      | App\Http\Controllers\Auth\LoginController@handleProviderCallback       | web,guest    |
+|        | POST      | logout                                                        | logout                               | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | POST      | password/email                                                | password.email                       | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |
+|        | GET|HEAD  | password/reset                                                | password.request                     | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |
+|        | POST      | password/reset                                                | password.update                      | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |
+|        | GET|HEAD  | password/reset/{token}                                        | password.reset                       | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
+|        | POST      | register                                                      |                                      | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
+|        | GET|HEAD  | register                                                      | register                             | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
+|        | GET|HEAD  | reklama                                                       | reklama.index                        | App\Http\Controllers\Reklama\mainController@index                      | web          |
+|        | GET|HEAD  | reklama/refresh/money                                         | table.buy-channels                   | App\Http\Controllers\Reklama\mainController@refreshCountMoney          | web          |
+|        | GET|HEAD  | reklama/table/buy-channels                                    | reklama.table.buy-channels.index     | App\Http\Controllers\Reklama\BuyChannelsTableController@index          | web          |
+|        | POST      | reklama/table/buy-channels                                    | reklama.table.buy-channels.store     | App\Http\Controllers\Reklama\BuyChannelsTableController@store          | web          |
+|        | GET|HEAD  | reklama/table/buy-channels/change-status                      | reklama.table.buy-channels.save-note | App\Http\Controllers\Reklama\BuyChannelsTableController@change_status  | web          |
+|        | GET|HEAD  | reklama/table/buy-channels/create                             | reklama.table.buy-channels.create    | App\Http\Controllers\Reklama\BuyChannelsTableController@create         | web          |
+|        | GET|HEAD  | reklama/table/buy-channels/note-save                          | reklama.table.buy-channels.save-note | App\Http\Controllers\Reklama\BuyChannelsTableController@note_save      | web          |
+|        | PUT|PATCH | reklama/table/buy-channels/{buy_channel}                      | reklama.table.buy-channels.update    | App\Http\Controllers\Reklama\BuyChannelsTableController@update         | web          |
+|        | DELETE    | reklama/table/buy-channels/{buy_channel}                      | reklama.table.buy-channels.destroy   | App\Http\Controllers\Reklama\BuyChannelsTableController@destroy        | web          |
+|        | GET|HEAD  | reklama/table/buy-channels/{buy_channel}/edit                 | reklama.table.buy-channels.edit      | App\Http\Controllers\Reklama\BuyChannelsTableController@edit           | web          |
+|        | POST      | reklama/table/channels                                        | reklama.table.channels.store         | App\Http\Controllers\Reklama\ChannelTableController@store              | web          |
+|        | GET|HEAD  | reklama/table/channels                                        | reklama.table.channels.index         | App\Http\Controllers\Reklama\ChannelTableController@index              | web          |
+|        | GET|HEAD  | reklama/table/channels/buy                                    | reklama.table.channels.buy           | App\Http\Controllers\Reklama\ChannelTableController@requestPurchase    | web          |
+|        | GET|HEAD  | reklama/table/channels/create                                 | reklama.table.channels.create        | App\Http\Controllers\Reklama\ChannelTableController@create             | web          |
+|        | DELETE    | reklama/table/channels/{channel}                              | reklama.table.channels.destroy       | App\Http\Controllers\Reklama\ChannelTableController@destroy            | web          |
+|        | PUT|PATCH | reklama/table/channels/{channel}                              | reklama.table.channels.update        | App\Http\Controllers\Reklama\ChannelTableController@update             | web          |
+|        | GET|HEAD  | reklama/table/channels/{channel}/edit                         | reklama.table.channels.edit          | App\Http\Controllers\Reklama\ChannelTableController@edit               | web          |
+|        | POST      | reklama/table/history-buy-channels                            | reklama.table.buy-channels.store     | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@store   | web          |
+|        | GET|HEAD  | reklama/table/history-buy-channels                            | reklama.table.buy-channels.index     | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@index   | web          |
+|        | GET|HEAD  | reklama/table/history-buy-channels/create                     | reklama.table.buy-channels.create    | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@create  | web          |
+|        | DELETE    | reklama/table/history-buy-channels/{history_buy_channel}      | reklama.table.buy-channels.destroy   | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@destroy | web          |
+|        | PUT|PATCH | reklama/table/history-buy-channels/{history_buy_channel}      | reklama.table.buy-channels.update    | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@update  | web          |
+|        | GET|HEAD  | reklama/table/history-buy-channels/{history_buy_channel}/edit | reklama.table.buy-channels.edit      | App\Http\Controllers\Reklama\HistoryBuyChannelsTableController@edit    | web          |
++--------+-----------+---------------------------------------------------------------+--------------------------------------+------------------------------------------------------------------------+--------------+

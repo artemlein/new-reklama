@@ -20,6 +20,7 @@ class CreateBuyChannelsTable extends Migration
             $table->string('url_channel');
             $table->string('name_vk');
             $table->string('url_vk');
+            $table->string('note');
             $table->integer('status');
 
             $table->timestamps();

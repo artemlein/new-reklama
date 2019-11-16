@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    private $counterRepository;
 
-    public function __construct()
-    {
-        $this->counterRepository = app(CounterRepository::class);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +15,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        $counts = $this->counterRepository->getCount();
-        return view('main',compact('counts'));
+        return view('welcome');
     }
 
     /**

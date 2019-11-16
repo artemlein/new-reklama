@@ -248,3 +248,11 @@ iframe {
     opacity: 1;
     filter: alpha(opacity=100);
 }
+input[class="buy-note"]{
+    background-color: inherit;
+    border:none;
+}
+.icon-check{
+    font-size:10px;
+    padding:0px 6px 0px 6px;
+}

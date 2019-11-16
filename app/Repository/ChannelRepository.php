@@ -106,7 +106,9 @@ class ChannelRepository extends CoreRepository
             'url_vk',
             'description',
             'subscribe',
-            'price',
+            'price_video',
+            'price_int',
+
         ];
 
         $result = $this->startConditions()

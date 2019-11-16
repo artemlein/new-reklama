@@ -33,6 +33,26 @@ class BuyChannelRepository extends CoreRepository
      * @param $id
      * @return mixed
      */
+    public function findId($id){
+        return $this->startConditions()->find($id);
+    }
+
+    public function changeStatus($request){
+        $item = $this->findId($request->id);
+        $item->status = $request->status;
+
+        $item->save();
+
+    }
+    public function saveNote($data){
+        $result = $this->findId($data->id);
+
+        $result['note'] = $data->note;
+
+        $result->save();
+
+        return true;
+    }
     public function addChannel($request){
         $data = [];
 
@@ -44,7 +64,8 @@ class BuyChannelRepository extends CoreRepository
         $data["url_channel"] = $request->url_channel;
         $data["url_vk"] = $request->url_vk;
         $data["name_vk"] = $request->name_vk;
-        $data["status"] = 0;
+        $data["status"] = 1;
+        $data["note"] = "";
 
         $result = $this->startConditions()->fill($data)->save();
 
@@ -99,15 +120,13 @@ class BuyChannelRepository extends CoreRepository
             'url_channel',
             'name_vk',
             'url_vk',
-            'description',
-            'subscribe',
-            'price',
+            'status',
+            'note',
         ];
 
         $result = $this->startConditions()
             ->select($columns)
             ->get();
-
         /*//Отношение возникает только при его вызове
         $post = $result->first();
 
@@ -124,12 +143,11 @@ class BuyChannelRepository extends CoreRepository
      * @param $id
      */
 
-    public function DestroyReport($id){
-        $report = $this
-            ->startConditions()
-            ->find($id);
+    public function DestroyChannel($id){
+        $channel = $this->findId($id);
 
-        $report->delete();
+
+        $channel->delete();
 
         return true;
     }

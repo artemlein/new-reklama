@@ -11,23 +11,43 @@
 |
 */
 
-Route::get('/','mainController@index')->name('index');
+Auth::routes();
 
+Route::get('/','MainController@index')->name('index');
 
-Route::resource('/table/channels','ChannelTableController')
-    ->except('show')
-    ->names('table.channels');
-Route::get('/table/channels/buy','ChannelTableController@requestPurchase')
-    ->name('table.channels.buy');
+Route::group(['namespace' => 'Auth', 'prefix' => '/login/'], function(){
+    Route::get('vk','LoginController@redirectToProvider');
+    Route::get('vk/callback', 'LoginController@handleProviderCallback');
+});
 
-Route::get('/refresh/money','mainController@refreshCountMoney')->name('table.buy-channels');
-Route::resource('/table/history-buy-channels','HistoryBuyChannelsTableController')
-    ->except('show')
-    ->names('table.buy-channels');
+Route::group(['namespace' => 'Reklama', 'prefix' => '/reklama/'], function(){
 
-Route::resource('/table/buy-channels','BuyChannelsTableController')
-    ->except('show')
-    ->names('table.buy-channels');
+    Route::get('/','mainController@index')->name('reklama.index');
+
+    Route::resource('/table/channels','ChannelTableController')
+        ->except('show')
+        ->names('reklama.table.channels');
+    Route::get('/table/channels/buy','ChannelTableController@requestPurchase')
+        ->name('reklama.table.channels.buy');
+
+    Route::get('/refresh/money','mainController@refreshCountMoney')->name('table.buy-channels');
+    Route::resource('/table/history-buy-channels','HistoryBuyChannelsTableController')
+        ->except('show')
+        ->names('reklama.table.buy-channels');
+
+    Route::get('/table/buy-channels/note-save','BuyChannelsTableController@note_save')
+        ->name('reklama.table.buy-channels.save-note');
+
+    Route::get('/table/buy-channels/change-status','BuyChannelsTableController@change_status')
+        ->name('reklama.table.buy-channels.save-note');
+
+    Route::resource('/table/buy-channels','BuyChannelsTableController')
+        ->except('show')
+        ->names('reklama.table.buy-channels');
+
+});
 
 
 Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

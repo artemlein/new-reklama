@@ -90,6 +90,7 @@
         <!-- END THEME PANEL -->
         <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
+
             <ul class="page-breadcrumb">
                 <li>
                     <a href="#">Главная</a>
@@ -117,20 +118,21 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="{{ $counts[0]->buy_video }}">0</span>
+                            <span data-counter="counterup" >{{ $counts[0]->buy_video }}</span>
                         </div>
                         <div class="desc"> Куплено роликов </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
                 <a class="dashboard-stat dashboard-stat-v2 red" href="/refresh/money">
                     <div class="visual">
                         <i class="fa fa-bar-chart-o"></i>
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="{{$counts[0]->money}}">0</span> т.р. </div>
+                            <span data-counter="counterup">{{$counts[0]->money}}</span>  т.р. </div>
                         <div class="desc"> Ушло на рекламу </div>
                     </div>
                 </a>

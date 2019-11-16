@@ -163,66 +163,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN SAMPLE TABLE PORTLET-->
-                    <a href="{{ route('table.channels.create') }}" class="btn btn-circle btn-default btn-sm w-100 ml-98">
+                    <a href="{{ route('reklama.table.channels.create') }}" class="btn btn-circle btn-default btn-sm w-100 ml-98">
                         <i class="fa fa-plus "></i> Add
                     </a>
                         <div class="portlet-body">
                             <div class="table-scrollable">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th> Название канала </th>
-                                        <th> Страница в VK </th>
-                                        <th> Подписчики </th>
-                                        <th> Описание </th>
-                                        <th> Status </th>
-                                        <th>  </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($channels as $item)
-                                    <tr>
-                                        <td> <a href="{{$item->url_channel}}" target="_blank">{{$item->name_channel}}</a> </td>
-                                        <td> <a href="{{$item->url_vk}}" target="_blank">{{$item->name_vk}}</a></td>
-                                        <td> {{$item->description}}</td>
-                                        <td> {{$item->subscribe}}</td>
-                                        <td>
-                                            <span class="label label-sm label-danger"> Не куплен </span>
-                                        </td>
-                                        <td><div class="page-toolbar">
-                                                <div class="btn-group pull-right">
-                                                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu pull-right" role="menu">
-                                                        <li>
-                                                            <a href="https://socialblade.com/search/{{ $item->url_channel }}" target="_blank">
-                                                                <i class="fa fa-pie-chart" aria-hidden="true"></i> SocialBlade</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/table/channels/buy?id={{$item->id}}&name_channel={{$item->name_channel}}&url_channel={{$item->url_channel}}&url_vk={{$item->url_vk}}&name_vk={{$item->name_vk}}">
-                                                                <i class="fa fa-usd" aria-hidden="true"></i> Buy </a>
-                                                        </li>
-                                                        <li>
-                                                            <form method="POST" action="{{ route('table.channels.destroy', $item->id) }}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-outline btn-sm">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                                                            </form>
-                                                        </li>
-                                                        <li class="divider"> </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="icon-bag"></i> Send to Buy</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+
+
+                                        <channel-component
+                                                channels="{{ $channels }}"
+                                        ></channel-component>
+
+
+
                                 <div class="empty-cell">
 
                                 </div>

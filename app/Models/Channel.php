@@ -12,6 +12,8 @@ class Channel extends Model
         'url_vk',
         'name_vk',
         'url_channel',
+        'price_video',
+        'price_int',
         'description',
         'price',
     ];

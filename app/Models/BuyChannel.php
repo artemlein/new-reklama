@@ -14,5 +14,6 @@ class BuyChannel extends Model
         'url_vk',
         'name_vk',
         'status',
+        'note',
     ];
 }

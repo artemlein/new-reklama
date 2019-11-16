@@ -26,6 +26,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
@@ -39,11 +40,20 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{ URL::asset('assets/global/css/components.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
     <link href="{{ URL::asset('assets/global/css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{{ URL::asset('assets/layouts/layout/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('assets/layouts/layout/css/themes/darkblue.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
     <link href="{{ URL::asset('assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" /> </head>
 <!-- END HEAD -->
@@ -63,10 +73,14 @@ License: You must have a valid license purchased only from themeforest(the above
         .empty-cell{
             height:150px;
         }
+        .page-header-fixed .page-container{
+            margin-top: 0px;
+        }
     </style>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 <!-- BEGIN HEADER -->
-<div class="page-header navbar navbar-fixed-top">
+
+<div class="page-header navbar navbar-fixed-top" >
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
@@ -377,8 +391,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                        <span class="username username-hide-on-mobile"> Nick </span>
+                        <img alt="" class="img-circle" src="{{ Auth::user()->avatar }}" />
+                        <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
@@ -450,7 +464,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                 <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
                 <li class="sidebar-toggler-wrapper hide">
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <!-- BEGIN SI
+                    DEBAR TOGGLER BUTTON -->
                     <div class="sidebar-toggler">
                         <span></span>
                     </div>
@@ -485,20 +500,20 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="/table/channels" class="nav-link nav-toggle">
-                        <i class="icon-briefcase"></i>
+                    <a href="/reklama/table/channels" class="nav-link nav-toggle">
+                        <i class="fa fa-play"></i>
                         <span class="title">Ютуб каналы</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="/table/buy-channels" class="nav-link nav-toggle">
-                        <i class="icon-briefcase"></i>
+                    <a href="/reklama/table/buy-channels" class="nav-link nav-toggle">
+                        <i class="fa fa-usd"></i>
                         <span class="title">Заказанные ролики</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="/table/history-buy-channels" class="nav-link nav-toggle">
-                        <i class="icon-briefcase"></i>
+                    <a href="/reklama/table/history-buy-channels" class="nav-link nav-toggle">
+                        <i class="fa fa-history"></i>
                         <span class="title">История рекламы</span>
                     </a>
                 </li>
@@ -514,9 +529,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END SIDEBAR -->
     </div>
     <!-- END SIDEBAR -->
-    <main>
+    <div id="app">
         @yield('content')
-    </main>
+    </div>
+</div>
 <!-- END FOOTER -->
 <!--[if lt IE 9]>
 
