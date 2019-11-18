@@ -100,7 +100,7 @@
 
                 axios({
                     method: 'post',
-                    url: "reklama/table/buy-channels/" + id,
+                    url: "/reklama/table/buy-channels/" + id,
                     params: {
                         _method: 'delete',
                         _token: this.csrf,
