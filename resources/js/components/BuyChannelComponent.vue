@@ -100,7 +100,7 @@
 
                 axios({
                     method: 'post',
-                    url: "/table/buy-channels/" + id,
+                    url: "/reklama/table/buy-channels/" + id,
                     params: {
                         _method: 'delete',
                         _token: this.csrf,
@@ -113,7 +113,7 @@
             status: function(itemId,status){
                 axios({
                     method: 'get',
-                    url: "/table/buy-channels/change-status",
+                    url: "/reklama/table/buy-channels/change-status",
                     params: {
                         id: itemId,
                         status: status,
@@ -125,7 +125,7 @@
             save_note: function(item){
                 axios({
                     method: 'get',
-                    url: "/table/buy-channels/note-save",
+                    url: "/reklama/table/buy-channels/note-save",
                     params: {
                         id: item.id,
                         note: item.note,

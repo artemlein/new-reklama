@@ -1950,7 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
     destory: function destory(id) {
       axios({
         method: 'post',
-        url: "/table/buy-channels/" + id,
+        url: "/reklama/table/buy-channels/" + id,
         params: {
           _method: 'delete',
           _token: this.csrf,
@@ -1963,7 +1963,7 @@ __webpack_require__.r(__webpack_exports__);
     status: function status(itemId, _status) {
       axios({
         method: 'get',
-        url: "/table/buy-channels/change-status",
+        url: "/reklama/table/buy-channels/change-status",
         params: {
           id: itemId,
           status: _status
@@ -1975,7 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
     save_note: function save_note(item) {
       axios({
         method: 'get',
-        url: "/table/buy-channels/note-save",
+        url: "/reklama/table/buy-channels/note-save",
         params: {
           id: item.id,
           note: item.note
@@ -2081,7 +2081,7 @@ __webpack_require__.r(__webpack_exports__);
     buy_channel: function buy_channel(item) {
       axios({
         method: 'get',
-        url: "/table/channels/buy",
+        url: "/reklama/table/channels/buy",
         params: {
           id: item.id,
           name_channel: item.name_channel,

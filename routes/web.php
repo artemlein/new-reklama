@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Auth', 'prefix' => '/login/'], function(){
 
 Route::group(['namespace' => 'Reklama', 'prefix' => '/reklama/'], function(){
 
-    Route::get('/','mainController@index')->name('reklama.index');
+    Route::get('/','MainController@index')->name('reklama.index');
 
     Route::resource('/table/channels','ChannelTableController')
         ->except('show')

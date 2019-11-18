@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuyChannel extends Model
 {
-    protected $table = "BuyChannels";
+    protected $table = "buyChannels";
 
     protected $fillable = [
         'name_channel',

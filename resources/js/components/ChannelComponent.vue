@@ -87,7 +87,7 @@
 
                  axios({
                      method: 'get',
-                     url: "/table/channels/buy",
+                     url: "/reklama/table/channels/buy",
                      params: {
                          id: item.id,
                          name_channel: item.name_channel,
