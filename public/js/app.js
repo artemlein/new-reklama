@@ -1950,7 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
     destory: function destory(id) {
       axios({
         method: 'post',
-        url: "/reklama/table/buy-channels/" + id,
+        url: "reklama/table/buy-channels/" + id,
         params: {
           _method: 'delete',
           _token: this.csrf,
