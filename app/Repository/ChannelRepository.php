@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Channel as Model;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,18 @@ class ChannelRepository extends CoreRepository
         $data["name_vk"] = $result_url_vk["response"][0]["first_name"]." ".$result_url_vk["response"][0]["last_name"];
         $data["url_channel"] = $request->url_channel;
         $data["description"] = $request->description;
-        $data["price"] = 0;
+
+        if($request->price_video === null){
+            $data["price_video"] = 0;
+        }else{
+            $data["price_video"] = $request->price_video;
+        }
+
+        if($request->price_int === null){
+            $data["price_int"] = 0;
+        }else{
+            $data["price_int"] = $request->price_int;
+        }
 
         $result = $this->startConditions()->fill($data)->save();
         return $result;
@@ -58,16 +70,16 @@ class ChannelRepository extends CoreRepository
     public function getCountBuyChannels(){
 
     }
-    public function Update($id, $request){
-        $report = $this->startConditions()->find($id);
+    public function Update($request, $id){
+        $channel = $this->startConditions()->find($id);
 
-        if(empty($reports)){
+        if(empty($channel)){
             return false;
         }
 
         $data = $request->all();
 
-        $result = $report->fill($data)->save();
+        $result = $channel->fill($data)->save();
 
         return $result;
     }

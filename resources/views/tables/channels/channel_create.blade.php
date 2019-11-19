@@ -43,17 +43,15 @@
                                 </div>
                                 <div class="portlet-body form">
                                     <!-- BEGIN FORM-->
-                                    <form method="POST" action="{{ route('table.channels.store') }}" class="form-horizontal">
+                                    <form method="POST" action="{{ route('reklama.table.channels.store') }}" class="form-horizontal">
                                         @csrf
                                         <div class="form-body">
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Channel URL</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
-                                                        <input type="text" name="url_channel" id="url_channel" class="form-control input-circle-left" placeholder="https://youtube.com/channel/...">
-                                                        <span class="input-group-addon input-circle-right">
-                                                              <i class="fa fa-youtube-play"></i>
-                                                        </span>
+                                                        <input type="text" name="url_channel" id="url_channel" class="form-control input-circle" placeholder="https://youtube.com/channel/...">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,10 +59,8 @@
                                                 <label class="col-md-3 control-label">Url VK</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
-                                                        <input type="text" name="url_vk" id="url_vk" class="form-control input-circle-left" placeholder="https://vk.com/id1234567">
-                                                        <span class="input-group-addon input-circle-right">
-                                                                        <i class="fa fa-usd"></i>
-                                                                    </span>
+                                                        <input type="text" name="url_vk" id="url_vk" class="form-control input-circle" placeholder="https://vk.com/id1234567">
+
                                                     </div>
                                                  </div>
                                             </div>
@@ -73,10 +69,26 @@
                                                 <label class="col-md-3 control-label">Description</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
-                                                        <input type="text" name="description" id="description" class="form-control input-circle-left" placeholder="Description">
-                                                        <span class="input-group-addon input-circle-right">
-                                                                        <i class="fa fa-usd"></i>
-                                                                    </span>
+                                                        <input type="text" name="description" id="description" class="form-control input-circle" placeholder="Description">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Price Integradion</label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" name="price_int" id="price_int" class="form-control input-circle" placeholder="500">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Price Video</label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" name="price_video" id="price_video" class="form-control input-circle" placeholder="1000">
+
                                                     </div>
                                                 </div>
                                             </div>

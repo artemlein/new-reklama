@@ -27,6 +27,7 @@
                 <span class=""> {{item.price_int}} </span>
             </td>
             <td>
+            <td>
                 <span class="label label-sm label-danger"> Не куплен </span>
             </td>
             <td><div class="page-toolbar">
@@ -43,17 +44,12 @@
                                 <i class="fa fa-usd" aria-hidden="true"></i> Buy
                             </a>
                         </li>
-                        <li>
-                            <form method="POST" action="#" >
-
-                                <button type="submit" class="btn btn-outline btn-sm">
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                            </form>
-                        </li>
                         <li class="divider"> </li>
                         <li>
-                            <a href="#" >
-                                <i class="icon-bag"></i> Send to Buy</a>
+                            <a :href="url_edit1 + item.id +  url_edit2" >
+                                <i class="icon-wrench"></i>  Edit
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -74,6 +70,8 @@
             return {
                 items: "",
                 url: "",
+                url_edit1: "/reklama/table/channels/",
+                url_edit2: "/edit",
             }
         },
         mounted() {

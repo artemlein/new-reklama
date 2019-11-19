@@ -34,9 +34,7 @@ class ChannelTableController extends BaseController
      */
     public function index()
     {
-        if(!BaseController:: CheckPermissions(Auth::user())){
-            return redirect('/');
-        }
+
 
         $counter = $this->counterRepository->getCount();
         $channels = $this->channelRepository->getAllWithPaginate();
@@ -70,7 +68,7 @@ class ChannelTableController extends BaseController
         }
         $result = $this->channelRepository->addChannel($request);
         if($result){
-            return redirect('/table/channels');
+            return redirect('reklama/table/channels');
         }
 
 
@@ -95,7 +93,12 @@ class ChannelTableController extends BaseController
      */
     public function edit($id)
     {
-        dd($__METHOD__);
+        if(!BaseController:: CheckPermissions(Auth::user())){
+            return redirect('/');
+        }
+
+        $channel = $this->channelRepository->getChannelOnId($id);
+        return view('tables.channels.channel_edit',compact('channel'));
     }
 
     /**
@@ -107,7 +110,9 @@ class ChannelTableController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        dd($__METHOD__);
+        $this->channelRepository->Update($request,$id);
+
+        return redirect('reklama/table/channels');
     }
 
     /**

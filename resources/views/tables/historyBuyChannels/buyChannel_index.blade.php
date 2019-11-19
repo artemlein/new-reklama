@@ -169,7 +169,7 @@
                 <div class="col-md-12">
 
                     <!-- BEGIN SAMPLE TABLE PORTLET-->
-                    <a href="{{ route('table.buy-channels.create') }}" class="btn btn-circle btn-default btn-sm w-100 ml-98">
+                    <a href="{{ route('reklama.table.buy-channels.create') }}" class="btn btn-circle btn-default btn-sm w-100 ml-98">
                         <i class="fa fa-plus "></i> Add
                     </a>
                         <div class="portlet-body">

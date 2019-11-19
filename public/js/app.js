@@ -1860,7 +1860,7 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
+// 
 //
 //
 //
@@ -2060,10 +2060,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     channels: String
@@ -2071,7 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       items: "",
-      url: ""
+      url: "",
+      url_edit1: "/reklama/table/channels/",
+      url_edit2: "/edit"
     };
   },
   mounted: function mounted() {
@@ -37646,6 +37644,7 @@ var render = function() {
             _c("span", {}, [_vm._v(" " + _vm._s(item.price_int) + " ")])
           ]),
           _vm._v(" "),
+          _c("td"),
           _vm._m(1, true),
           _vm._v(" "),
           _c("td", [
@@ -37682,11 +37681,22 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(4, true),
-                    _vm._v(" "),
                     _c("li", { staticClass: "divider" }),
                     _vm._v(" "),
-                    _vm._m(5, true)
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: _vm.url_edit1 + item.id + _vm.url_edit2
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-wrench" }),
+                          _vm._v("  Edit\n                        ")
+                        ]
+                      )
+                    ])
                   ]
                 )
               ])
@@ -37767,37 +37777,6 @@ var staticRenderFns = [
           _vm._v(" SocialBlade")
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("form", { attrs: { method: "POST", action: "#" } }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-outline btn-sm", attrs: { type: "submit" } },
-          [
-            _c("i", {
-              staticClass: "fa fa-trash",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v(" Delete")
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "icon-bag" }),
-        _vm._v(" Send to Buy")
-      ])
     ])
   }
 ]

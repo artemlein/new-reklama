@@ -15,7 +15,6 @@ class Channel extends Model
         'price_video',
         'price_int',
         'description',
-        'price',
     ];
 
 }
