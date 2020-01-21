@@ -1860,7 +1860,7 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// 
+//
 //
 //
 //
@@ -1933,20 +1933,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    channels: String
+    channels_raw: Array
   },
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       notes: "",
-      items: ""
+      items: "",
+      channels: "",
+      sortParam: ""
     };
   },
   mounted: function mounted() {
     this.items = JSON.parse(this.channels);
-    console.log(this.url);
+  },
+  computed: {
+    filtredChannels: function filtredChannels() {
+      function sortByPrice(d1, d2) {
+        return d1.status > d2.status ? 1 : -1;
+      }
+
+      function sortById(d1, d2) {
+        return d2.id > d1.id ? 1 : -1;
+      }
+
+      switch (this.sortParam) {
+        case 'status':
+          return this.channels_raw.sort(sortByPrice);
+
+        default:
+          return this.channels_raw.sort(sortById);
+      }
+    }
   },
   methods: {
+    changeStatus: function changeStatus() {
+      if (this.sortParam === 'status') {
+        this.sortParam = '';
+      } else {
+        this.sortParam = "status";
+      }
+
+      ;
+    },
+    clickConsole: function clickConsole() {
+      console.log(this.sortParam);
+    },
     destory: function destory(id) {
       axios({
         method: 'post',
@@ -2091,6 +2123,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response);
       });
+    },
+    sortedList: function sortedList() {
+      switch (this.sortParam) {
+        case 'subscribe':
+          return this.items.sort(sortByPrice);
+
+        default:
+          return this.items;
+      }
     }
   }
 });
@@ -37370,13 +37411,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("table", { staticClass: "table table-hover" }, [
-    _vm._m(0),
+    _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v(" #")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Name Channel")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            on: {
+              click: function($event) {
+                return _vm.clickConsole()
+              }
+            }
+          },
+          [_vm._v(" Name Vk")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            on: {
+              click: function($event) {
+                return _vm.changeStatus()
+              }
+            }
+          },
+          [_vm._v("Статус")]
+        ),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Заметки")])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "tbody",
-      _vm._l(_vm.items, function(item) {
+      _vm._l(_vm.filtredChannels, function(item) {
         return _c("tr", { class: { danger: item.delete } }, [
-          _c("td", [_vm._v(" 1")]),
+          _c("td", [_vm._v(_vm._s(item.id))]),
           _vm._v(" "),
           _c(
             "td",
@@ -37455,7 +37530,7 @@ var render = function() {
           _c("td", [
             _c("div", { staticClass: "page-toolbar" }, [
               _c("div", { staticClass: "btn-group pull-right" }, [
-                _vm._m(1, true),
+                _vm._m(0, true),
                 _vm._v(" "),
                 _c(
                   "ul",
@@ -37562,26 +37637,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v(" #")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Name Channel")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Name Vk")]),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th", [_vm._v("Заметки")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "button",
       {
@@ -37614,7 +37669,35 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("table", { staticClass: "table table-hover" }, [
-    _vm._m(0),
+    _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v(" Название канала ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Страница в VK ")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            on: {
+              click: function($event) {
+                return _vm.sortedList(_vm.subscribe)
+              }
+            }
+          },
+          [_vm._v(" Подписчики ")]
+        ),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Описание ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Отдельный ролик ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Интеграция ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Status ")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "tbody",
@@ -37645,12 +37728,12 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("td"),
-          _vm._m(1, true),
+          _vm._m(0, true),
           _vm._v(" "),
           _c("td", [
             _c("div", { staticClass: "page-toolbar" }, [
               _c("div", { staticClass: "btn-group pull-right" }, [
-                _vm._m(2, true),
+                _vm._m(1, true),
                 _vm._v(" "),
                 _c(
                   "ul",
@@ -37659,7 +37742,7 @@ var render = function() {
                     attrs: { role: "menu" }
                   },
                   [
-                    _vm._m(3, true),
+                    _vm._m(2, true),
                     _vm._v(" "),
                     _c("li", [
                       _c(
@@ -37709,30 +37792,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v(" Название канала ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Страница в VK ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Подписчики ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Описание ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Отдельный ролик ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Интеграция ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Status ")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -180,11 +180,11 @@
 
                         <div class="portlet-body">
                             <div class="table-scrollable">
-
+ß
 
                                 <tr class="success">
                                     <buy-channel-component
-                                            channels="{{ $channels }}"
+                                            :channels_raw="{{ $channels }}"
                                     ></buy-channel-component>
                                 </tr>
 

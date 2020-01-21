@@ -6,17 +6,17 @@
         <tr>
             <th> #</th>
             <th> Name Channel</th>
-            <th> Name Vk</th>
-            <th></th>
+            <th @click="clickConsole()"> Name Vk</th>
+            <th @click="changeStatus()">Статус</th>
             <th></th>
             <th>Заметки</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item in items" v-bind:class="{danger: item.delete}
+        <tr v-for="item in filtredChannels" v-bind:class="{danger: item.delete}
                                                 ">
 
-            <td> 1</td>
+            <td>{{ item.id }}</td>
             <td><A v-bind:href="item.url_channel" target="_blank">{{ item.name_channel }}</A></td>
             <td><A v-bind:href="item.url_vk" target="_blank">{{ item.name_vk }}</A></td>
             <td>
@@ -77,7 +77,7 @@
     export default {
 
         props: {
-            channels: String,
+            channels_raw: Array,
 
         },
 
@@ -87,15 +87,41 @@
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 notes: "",
                 items: "",
+                channels: "",
+                sortParam: "",
 
             }
         },
         mounted() {
             this.items = JSON.parse(this.channels);
-            console.log(this.url);
+
+
 
         },
+        computed:{
+            filtredChannels: function(){
+                function sortByPrice (d1,d2) {return (d1.status > d2.status) ? 1 : -1; }
+                function sortById (d1,d2) {return (d2.id > d1.id) ? 1 : -1; }
+
+                switch(this.sortParam){
+                    case 'status': return this.channels_raw.sort(sortByPrice);
+                    default: return this.channels_raw.sort(sortById);
+                }
+
+            }
+        },
         methods: {
+            changeStatus: function (){
+                if(this.sortParam === 'status'){
+                    this.sortParam = '';
+                } else {
+                    this.sortParam = "status";
+                };
+            },
+            clickConsole: function(){
+              console.log(this.sortParam);
+            },
+
             destory: function(id){
 
                 axios({
@@ -137,4 +163,5 @@
         }
 
     }
+
 </script>

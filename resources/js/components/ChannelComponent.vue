@@ -6,7 +6,7 @@
         <tr>
             <th> Название канала </th>
             <th> Страница в VK </th>
-            <th> Подписчики </th>
+            <th @click="sortedList(subscribe)"> Подписчики </th>
             <th> Описание </th>
             <th> Отдельный ролик </th>
             <th> Интеграция </th>
@@ -100,6 +100,12 @@
 
 
             },
+            sortedList () {
+                switch(this.sortParam){
+                    case 'subscribe': return this.items.sort(sortByPrice);
+                    default: return this.items;
+                }
+            }
 
         }
 
